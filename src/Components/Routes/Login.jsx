@@ -1,17 +1,19 @@
 import styled from "styled-components"
 import { Link } from "react-router-dom"
 import Cadastro from "./Cadastro"
-import StyledButtonBlue from "../Routes/StyledButtonBlue"
+import StyledButtonBlue from "../CommonAssets/StyledButtonBlue"
+import StyledTextInput from "../CommonAssets/StyledTextInput"
+import Logo from "../CommonAssets/Logo"
 export default function Login(){
     return(
         <Container>
+            <Logo></Logo>
             
-            <img src="https://raw.githubusercontent.com/gist/xie/d3ede2c454b8bf89d4ae543eba4b1563/raw/b225b0706cb9d1ba48206f6dc7352de45c127380/fortnite.gif"/>
             
             <form>
 
-                <InputStyle><input type="email" name="" placeholder="Email" id="" /></InputStyle>
-                <InputStyle><input type="password" name="" id="" placeholder="Senha" /></InputStyle>
+                <StyledTextInput type="email" placeholder="Email"></StyledTextInput>
+                <StyledTextInput type="password" placeholder="Senha" ></StyledTextInput>
                 <StyledButtonBlue text="Entrar"></StyledButtonBlue>
             </form>
                 <Link to='/cadastro' element={<Cadastro/>}>
@@ -29,11 +31,7 @@ flex-direction: column;
 align-items: center;
 align-content: center;
 margin-top: 70px;
-    img{
-        width: 180px;
-        background-color: burlywood;
-        margin-bottom: 33px;
-    }
+    
  
 `
 
