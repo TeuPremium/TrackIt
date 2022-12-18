@@ -5,7 +5,7 @@ import StyledInput from "./StyledTextInput"
 import StyledButtonBlue from "../../CommonAssets/StyledButtonBlue"
 
 
-export default function(){
+export default function(prop){
     const [height, setHeight] = useState('180px')
     const week = ['D','S','T','Q','Q','S','S']
 
@@ -39,7 +39,7 @@ const Card = styled.div`
 `
 const WeekContainer = styled.div`
     display: flex;
-    margin-left: 19px;
+    margin-left: 5%;
     margin-top: 8px;
 `
 
@@ -48,15 +48,16 @@ const CancelBtn = styled.button`
     margin-right: 23px;
     background: none;
     border:none;
+    cursor: pointer;
 `
 
 const Btns = styled.div`
     width: 100%;
     display: flex;
     justify-content: flex-end;
-    background-color: #31d4d4;
     align-items: center;
     margin-top: 35px;
-    padding-right: 16px;
+    padding-right: 5%;
     box-sizing: border-box;
+    
 `

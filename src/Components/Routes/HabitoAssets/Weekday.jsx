@@ -5,11 +5,20 @@ export default function(prop){
     const [background, setBackground] = useState('white')
     const [color, setColor] = useState('#d5d5d5')
     
-    {return(
-    <Container onClick={() => {setColor('white'); setBackground('#d5d5d5')}} backgroundColor={background} color={color}>
+    if(color=='#d5d5d5'){
+        return(
+    <Container onClick={() => {setColor('white'); setBackground('#d5d5d5'); prop.selectDay(true)}} backgroundColor={background} color={color}>
     {prop.day}
     </Container>
-    )}
+    )
+    }
+    else{
+        return(
+            <Container onClick={() => {setColor('#d5d5d5'); setBackground('white'); prop.selectDay(false)}} backgroundColor={background} color={color}>
+            {prop.day}
+            </Container>
+            ) 
+    }
 }
 
 const Container = styled.div`
@@ -24,4 +33,5 @@ const Container = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 `
