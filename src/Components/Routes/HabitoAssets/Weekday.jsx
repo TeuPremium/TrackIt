@@ -5,18 +5,27 @@ export default function(prop){
     const [background, setBackground] = useState('white')
     const [color, setColor] = useState('#d5d5d5')
     
-    if(color=='#d5d5d5'){
-        return(
-    <Container onClick={() => {setColor('white'); setBackground('#d5d5d5'); prop.selectDay(true)}} backgroundColor={background} color={color}>
-    {prop.day}
-    </Container>
-    )
+    if(!prop.disabled){
+        if(color=='#d5d5d5'){
+            return(
+                <Container onClick={() => {setColor('white'); setBackground('#d5d5d5'); prop.selectDay(true)}} backgroundColor={background} color={color}>
+                {prop.day}
+                </Container>
+            )
+            }
+        else{
+            return(
+                <Container onClick={() => {setColor('#d5d5d5'); setBackground('white'); prop.selectDay(false)}} backgroundColor={background} color={color}>
+                {prop.day}
+                </Container>
+            ) 
+        }
     }
     else{
         return(
-            <Container onClick={() => {setColor('#d5d5d5'); setBackground('white'); prop.selectDay(false)}} backgroundColor={background} color={color}>
-            {prop.day}
-            </Container>
+                <Container color={prop.color} backgroundColor={prop.background}>
+                {prop.day}
+                </Container>
             ) 
     }
 }

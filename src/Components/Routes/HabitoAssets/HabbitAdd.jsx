@@ -6,12 +6,12 @@ import StyledButtonBlue from "../../CommonAssets/StyledButtonBlue"
 
 
 export default function(prop){
-    const [height, setHeight] = useState('180px')
+    
     const week = ['D','S','T','Q','Q','S','S']
 
-    return(
+        return(
     <Container >
-        <Card height={height}>
+        <Card>
            <StyledInput placeholder="nome do habito"/>
             <WeekContainer>{week.map((n) => <Weekday day={n}/>)}</WeekContainer>
             <Btns>
@@ -21,7 +21,7 @@ export default function(prop){
 
         </Card>
     </Container>
-    )
+    ) 
 }
 
 const Container = styled.div`
@@ -34,7 +34,7 @@ const Container = styled.div`
 const Card = styled.div`
     border-radius: 5px;
     background-color: white;
-    height: ${prop=>prop.height};
+    height: 180px;
     width: 93%;
 `
 const WeekContainer = styled.div`

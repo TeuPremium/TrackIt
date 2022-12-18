@@ -4,9 +4,11 @@ import Footer from "../../CommonAssets/Footer"
 import StyledButtonBlue from "../../CommonAssets/StyledButtonBlue"
 import BlueText from "../../CommonAssets/BlueText"
 import GlobalStyle from "../../../Styles/GlobalStyle"
-import Habbit from "./Habbit"
+import Habbit from "./HabbitAdd"
+import HabbitAdded from "./HabbitAdded"
 
 export default function(prop){
+    
     return(
     <PageStyle>
         <GlobalStyle color="#e5e5e5"/>
@@ -17,6 +19,7 @@ export default function(prop){
             <PlusBtn><StyledButtonBlue width='40px' text='+' height='35px'/></PlusBtn>
        </MyHabbits>
         <Habbit/>
+        <HabbitAdded habit="Placeholder text" />
     <NoHabit>Voce ainda nao tem nenhum habito cadastrado ainda. Adicione um habito para comecar a acompanhar!</NoHabit>
     </Container>
     <Footer></Footer>
