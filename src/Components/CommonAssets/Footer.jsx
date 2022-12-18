@@ -1,24 +1,30 @@
 import styled from "styled-components"
 import { buildStyles, CircularProgressbar } from "react-circular-progressbar"
+import { Link } from "react-router-dom"
 
 export default function(prop){
     let percentage = 25
     return(
         <Container>
             <Habits>
+            <Link style={{ textDecoration:'none' , color:'#52b6ff'}} to="/habitos">
                 Habitos
+            </Link>
             </Habits>
-            
+
+            <Link style={{ textDecoration:'none' , color:'#52b6ff'}} to="/hoje">
             <CircularProgressbar 
             background={true}
             value={percentage} 
             text={<tspan dy={4.5} dx={-17}>Hoje</tspan>}
             />
+            </Link>
 
             <History>
+            <Link style={{ textDecoration:'none' , color:'#52b6ff'}} to="/historico">
                 Historico
+            </Link>
             </History>
-            
         </Container>
         
     )

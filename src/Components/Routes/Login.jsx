@@ -4,6 +4,8 @@ import Cadastro from "./Cadastro"
 import StyledButtonBlue from "../CommonAssets/StyledButtonBlue"
 import StyledTextInput from "../CommonAssets/StyledTextInput"
 import Logo from "../CommonAssets/Logo"
+
+
 export default function Login(){
     return(
         <Container>
@@ -14,7 +16,9 @@ export default function Login(){
 
                 <StyledTextInput type="email" placeholder="Email"></StyledTextInput>
                 <StyledTextInput type="password" placeholder="Senha" ></StyledTextInput>
+                <Link to='/hoje'>
                 <StyledButtonBlue height='45px' width="303px" text="Entrar"></StyledButtonBlue>
+                </Link>
             </form>
                 <Link to='/cadastro' element={<Cadastro/>}>
                 <SignupHook>Nao tem conta? Cadastre-se!</SignupHook>
