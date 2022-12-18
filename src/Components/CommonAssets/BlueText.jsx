@@ -11,5 +11,5 @@ export default function(prop){
 const Style = styled.div`
     
     color: #126ba5;
-    font-family: 'Lexend Deca';
+    
 `
