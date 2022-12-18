@@ -19,7 +19,7 @@ export default function(prop){
             <BlueText text="Segunda, 17/05"/>
        </MyHabits>
         <NoHabit>Nenhum habito concluido ainda</NoHabit>
-        <HabitCard habit='Terminar os projetos' record='seu recorde: 3 dias' currentSequence='sequencia atual: 3 dias' />
+        <HabitCard habit='Terminar os projetos' record={3} currentSequence={3} />
     </Container>
     <Footer></Footer>
     </PageStyle>

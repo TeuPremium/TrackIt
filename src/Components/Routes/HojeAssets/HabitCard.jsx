@@ -12,8 +12,10 @@ export default function(prop){
                <StyledDiv>
                     <div><h1> {prop.habit} </h1>
                     <SequenceContainer>
-                    <h2>{prop.currentSequence}</h2>
-                    <h2>{prop.record}</h2>
+                    <h2>Sequencia atual: {complete ? <ColoredText color="#8fc549">{prop.currentSequence} dias</ColoredText> : <>{prop.currentSequence} dias</>}</h2>
+                    {/* consertar clique recorde*/}
+                    <h2>Seu recorde: {complete ? <ColoredText color="#8fc549">{prop.record} dias</ColoredText> : <>{prop.record} dias</>} </h2>
+                    
                     </SequenceContainer>
                     </div>
                     {complete ? <IoIosCheckbox onClick={() => setComplete(false)} color='#8fc549'/> : <IoIosCheckbox onClick={() => setComplete(true)} color='#ebebeb'/>}
@@ -69,4 +71,7 @@ const SequenceContainer = styled.div`
     line-height: 0.5;
     position: relative;
     top: 2px;
+`
+const ColoredText = styled.span`
+    color: ${prop => prop.color};
 `
