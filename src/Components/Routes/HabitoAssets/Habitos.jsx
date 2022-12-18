@@ -4,8 +4,8 @@ import Footer from "../../CommonAssets/Footer"
 import StyledButtonBlue from "../../CommonAssets/StyledButtonBlue"
 import BlueText from "../../CommonAssets/BlueText"
 import GlobalStyle from "../../../Styles/GlobalStyle"
-import Habbit from "./HabbitAdd"
-import HabbitAdded from "./HabbitAdded"
+import Habit from "./HabitAdd"
+import HabitAdded from "./HabitAdded"
 
 export default function(prop){
     
@@ -14,12 +14,12 @@ export default function(prop){
         <GlobalStyle color="#e5e5e5"/>
     <Header/>
     <Container>
-        <MyHabbits>
+        <MyHabits>
             <BlueText text="Meus habitos"/>
             <PlusBtn><StyledButtonBlue width='40px' text='+' height='35px'/></PlusBtn>
-       </MyHabbits>
-        <Habbit/>
-        <HabbitAdded habit="Placeholder text" />
+       </MyHabits>
+        <Habit/>
+        <HabitAdded habit="Placeholder text" />
     <NoHabit>Voce ainda nao tem nenhum habito cadastrado ainda. Adicione um habito para comecar a acompanhar!</NoHabit>
     </Container>
     <Footer></Footer>
@@ -27,7 +27,7 @@ export default function(prop){
     )
 }
 
-const MyHabbits = styled.span`
+const MyHabits = styled.span`
     display: flex;
     justify-content:space-between;
     background-color: #e5e5e5;
