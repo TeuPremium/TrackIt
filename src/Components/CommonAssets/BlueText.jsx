@@ -9,7 +9,7 @@ export default function(prop){
 }
 
 const Style = styled.div`
-    
+    font-size: 23px;
     color: #126ba5;
     
 `
