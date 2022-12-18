@@ -16,15 +16,15 @@ const HeaderStyle = styled.div`
     width: 100%;
     height: 70px;
     position: fixed;
-    
+    padding-left: 3.5%;
+    padding-right: 3.5%;
+    box-sizing: border-box;
     div{
         font-weight:400 ;
         font-size: 39px;
         color:white;
         font-family: playball;
-        position: relative;
-        top:10px;
-        left: 18px;
+        
     }
    
    
@@ -32,15 +32,19 @@ const HeaderStyle = styled.div`
 const Container = styled.div`
    position :absolute ;
    display: flex;
-   width: 100%;
+   width: 93%;
    justify-content: space-between;
+   align-items: center;
+   align-content: center;
+   height: 100%;
+   
+   margin-left: auto;
+   margin-right: auto;
    img{
         width: 51px;
         height: 51px;
         border-radius: 51px;
         position: relative;
-        top: -8px;
-        right: 45px;
-        
+        top: 5px;
     }
 `

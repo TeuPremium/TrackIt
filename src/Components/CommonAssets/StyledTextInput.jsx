@@ -18,5 +18,9 @@ const InputStyle = styled.div`
         border-width: 1px;
         margin-bottom: 5px;
         box-sizing: border-box;
+        ::placeholder{
+        color:#dbdbdb;
+        padding-left: 11px;
+        }
     }
 `

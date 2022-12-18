@@ -2,7 +2,9 @@ import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
 body{
-    background-color: black;
+    font-family: Lexend Deca;
+    background-color: ${prop =>prop.color};
 }
+
 `
 export default GlobalStyle;

@@ -5,11 +5,12 @@ import Login from './Components/Routes/Login';
 import ReactGlobalStyle from 'react-global-style';
 import GlobalStyle from './Styles/GlobalStyle'
 import Cadastro from './Components/Routes/Cadastro';
-import Habitos from './Components/Routes/Habitos';
+import Habitos from './Components/Routes/HabitoAssets/Habitos';
 
 function App() {
   return (
   <BrowserRouter>
+    <GlobalStyle/>
     <Routes>
         
           <Route path='/' element={<Login/>}/>

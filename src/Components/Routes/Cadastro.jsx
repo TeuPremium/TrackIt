@@ -17,7 +17,7 @@ export default function Cadastro(prop){
 
         <StyledTextInput type="image" placeholder="Foto"></StyledTextInput>
 
-        <StyledButtonBlue text="Cadastrar"></StyledButtonBlue>
+        <StyledButtonBlue height='45px' width="303px" text="Cadastrar"></StyledButtonBlue>
 
         <Link to='/'>
         <LoginHook>Ja tem uma conta? Faca login</LoginHook>

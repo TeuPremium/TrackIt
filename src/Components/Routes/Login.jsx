@@ -14,7 +14,7 @@ export default function Login(){
 
                 <StyledTextInput type="email" placeholder="Email"></StyledTextInput>
                 <StyledTextInput type="password" placeholder="Senha" ></StyledTextInput>
-                <StyledButtonBlue text="Entrar"></StyledButtonBlue>
+                <StyledButtonBlue height='45px' width="303px" text="Entrar"></StyledButtonBlue>
             </form>
                 <Link to='/cadastro' element={<Cadastro/>}>
                 <SignupHook>Nao tem conta? Cadastre-se!</SignupHook>

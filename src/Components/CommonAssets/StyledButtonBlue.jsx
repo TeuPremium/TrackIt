@@ -1,7 +1,7 @@
 import styled from "styled-components"
 export default function(prop){
     return(
-        <StyledButtonBlue>
+        <StyledButtonBlue width={prop.width} height={prop.height}>
             {prop.text}
         </StyledButtonBlue>
     )
@@ -9,8 +9,8 @@ export default function(prop){
 const StyledButtonBlue = styled.button`
     color: white;
     background-color: #52b6ff;
-    width: 303px;
-    height: 45px;
+    width: ${props => props.width};
+    height: ${props => props.height};
     border-radius: 5px;
     border-style: solid;
     border-width: 0px;
