@@ -1,16 +1,25 @@
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
 import Logo from "../CommonAssets/Logo";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+
 
 export default function App() {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
+  const navigate = useNavigate()
   function onSubmit(data){ 
+  const submitData = axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login', data)
+    submitData.then((res) =>{
+            navigate('/hoje')
+            })
 
- console.log(data);
-}
+    submitData.catch((err) => {
+        alert(err.response.data.message)
+    })
 
-  console.log(watch("email")); // watch input value by passing the name of it
+    console.log(data);
+    }
 
   return (
     
@@ -19,11 +28,11 @@ export default function App() {
         
             <form onSubmit={handleSubmit(onSubmit)}>
             
-                <div><input placeholder="email" id='email' name="email" type="email" defaultValue="email" {...register("email", {required:true})} /></div>
+                <div><input placeholder="email" id='email' name="email" type="email" {...register("email", {required:true})} /></div>
                 {errors.email && <div><h2>Este campo deve estar preenchido</h2></div>}
                 
-                <div><input id='pwd' name="pwd" placeholder="senha" type="password" {...register("senha", { required: true })} /></div>
-                {errors.senha && <div>Este campo deve estar preenchido</div>}
+                <div><input id='pwd' name="pwd" placeholder="senha" type="password" {...register("password", { required: true })} /></div>
+                {errors.password && <div>Este campo deve estar preenchido</div>}
 
             <div> <input value="Entrar" style={{background:'#52b6ff', color:'white'}} type="submit" /></div>
             </form>
