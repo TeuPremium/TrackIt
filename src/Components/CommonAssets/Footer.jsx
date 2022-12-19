@@ -15,9 +15,13 @@ export default function(prop){
             <Link style={{ textDecoration:'none' , color:'#52b6ff'}} to="/hoje">
             <CircularProgressbar 
             background={true}
+            backgroundPadding={6}
+            
             value={percentage} 
             text={<tspan dy={4.5} dx={-17}>Hoje</tspan>}
             />
+          
+          
             </Link>
 
             <History>
