@@ -4,10 +4,10 @@ import { Link, Routes, Route, BrowserRouter } from 'react-router-dom';
 import Login from './Components/Routes/Login';
 import ReactGlobalStyle from 'react-global-style';
 import GlobalStyle from './Styles/GlobalStyle'
-import Cadastro from './Components/Routes/Cadastro';
 import Habitos from './Components/Routes/HabitoAssets/Habitos';
 import Hoje from './Components/Routes/HojeAssets/Hoje';
 import Historico from './Components/Routes/HistoricoAssets/Historico';
+import Cadastro from './Components/Routes/Cadastro';
 
 function App() {
   return (

@@ -1,47 +1,66 @@
-import styled from "styled-components"
-import { Link } from "react-router-dom"
-import Cadastro from "./Cadastro"
-import StyledButtonBlue from "../CommonAssets/StyledButtonBlue"
-import StyledTextInput from "../CommonAssets/StyledTextInput"
-import Logo from "../CommonAssets/Logo"
+import { useForm } from "react-hook-form";
+import styled from "styled-components";
+import Logo from "../CommonAssets/Logo";
+import { Link } from "react-router-dom";
 
+export default function App() {
+  const { register, handleSubmit, watch, formState: { errors } } = useForm();
+  function onSubmit(data){ 
 
-export default function Login(){
-    return(
+ console.log(data);
+}
+
+  console.log(watch("email")); // watch input value by passing the name of it
+
+  return (
+    
         <Container>
-            <Logo></Logo>
+            <Logo/>
+        
+            <form onSubmit={handleSubmit(onSubmit)}>
             
-            
-            <form>
+                <div><input placeholder="email" id='email' name="email" type="email" defaultValue="email" {...register("email", {required:true})} /></div>
+                {errors.email && <div><h2>Este campo deve estar preenchido</h2></div>}
+                
+                <div><input id='pwd' name="pwd" placeholder="senha" type="password" {...register("senha", { required: true })} /></div>
+                {errors.senha && <div>Este campo deve estar preenchido</div>}
 
-                <StyledTextInput type="email" placeholder="Email"></StyledTextInput>
-                <StyledTextInput type="password" placeholder="Senha" ></StyledTextInput>
-                <Link to='/hoje'>
-                <StyledButtonBlue height='45px' width="303px" text="Entrar"></StyledButtonBlue>
-                </Link>
+            <div> <input value="Entrar" style={{background:'#52b6ff', color:'white'}} type="submit" /></div>
             </form>
-                <Link to='/cadastro' element={<Cadastro/>}>
-                <SignupHook>Nao tem conta? Cadastre-se!</SignupHook>
-                </Link>
+            <Link style={{color:'#52b6ff'}} to='/cadastro'>
+            <LoginHook>Nao tem uma conta? Cadastre-se!</LoginHook>
+            </Link>
         </Container>
-    )
+    
+  );
 }
 
 const Container = styled.div`
-display: flex;
-flex-wrap: wrap;
-justify-content: center;
-flex-direction: column;
-align-items: center;
-align-content: center;
-margin-top: 70px;
-    
- 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    margin-top: 65px;
+    input{
+        width:303px ;
+        height: 45px;
+        border-color:#d4d4d4;
+        border-style: solid;
+        border-radius: 5px;
+        border-width: 1px;
+        margin-bottom: 5px;
+        box-sizing: border-box;
+        padding-left: 11px;
+        font-weight: 400;
+        font-size: 20px;
+        color: #414141;
+        ::placeholder{
+        color:#dbdbdb;
+        }    
+    }
 `
-
-
-
-const SignupHook = styled.div`
+const LoginHook = styled.div`
     margin-top: 25px;
     color:#52b6ff;
     font-size: 14px;

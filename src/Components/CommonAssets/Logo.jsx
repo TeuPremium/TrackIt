@@ -9,7 +9,8 @@ export default function Logo(){
 }
 
 const Style = styled.div`
-    
+    margin-left: auto;
+    margin-right: auto;
     img{width: 180px;
     
     margin-bottom: 33px;}
