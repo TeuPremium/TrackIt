@@ -7,6 +7,7 @@ import GlobalStyle from './Styles/GlobalStyle'
 import Cadastro from './Components/Routes/Cadastro';
 import Habitos from './Components/Routes/HabitoAssets/Habitos';
 import Hoje from './Components/Routes/HojeAssets/Hoje';
+import Historico from './Components/Routes/HistoricoAssets/Historico';
 
 function App() {
   return (
@@ -16,9 +17,9 @@ function App() {
         
           <Route path='/' element={<Login/>}/>
           <Route path='/cadastro' element={<Cadastro/>}/>
-          <Route path='habitos' element={<Habitos/>}/>
-          <Route path='hoje' element={<Hoje/>}/>
-
+          <Route path='/habitos' element={<Habitos/>}/>
+          <Route path='/hoje' element={<Hoje/>}/>
+          <Route path='/historico' element={<Historico/>}/>
     </Routes>
   </BrowserRouter>
   
