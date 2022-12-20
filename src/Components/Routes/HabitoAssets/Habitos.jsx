@@ -9,18 +9,15 @@ import HabitAdded from "./HabitAdded"
 import AuthContext from "../../Contexts/AuthContext"
 import { useContext, useState } from "react"
 import LoginFailed from "../../CommonAssets/LoginFailed"
+import CardsContext from "../../Contexts/AuthContext copy"
 import { useEffect } from "react"
 import axios from "axios"
-import CardsContext from "../../Contexts/AuthContext copy"
 
 
 export default function(prop){
     const {token} = useContext(AuthContext)
     const [add, setAdd] = useState(false)
-    const Cards = []
-    const [cardData, setCardData] = useState()
     const {cards, setCards} = useContext(CardsContext)
-    
     useEffect(() => {
         const URL = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits"
         const config = {
@@ -29,11 +26,12 @@ export default function(prop){
         }
     }
     const promise = axios.get(URL, config)
-    promise.then((res) => {Cards.push(res.data); setCards(Cards)})
-    promise.catch((err) => console.log(err.response.data))
-    }, [])
-
+    promise.then((res) => {setCards(res.data)})
+    promise.catch(console.log)
     console.log(cards)
+    }, [])
+    
+
     if(token){
         return(
     <PageStyle>
@@ -45,8 +43,8 @@ export default function(prop){
             <PlusBtn onClick={() => setAdd(true)}><StyledButtonBlue width='40px' text='+' height='35px'/></PlusBtn>
        </MyHabits>
         {add ? <Habit setAdd={add => setAdd(add)}/> : ''}
-        {cards.map((n) => <HabitAdded name='joj' cards={n} days={n.days} habit={n.name} />)}
-    {!cards ? <NoHabit>Voce ainda nao tem nenhum habito cadastrado ainda. Adicione um habito para comecar a acompanhar!</NoHabit> : ''}
+        {cards.map((n)=><HabitAdded habit={n.name} />)}
+    {<NoHabit>Voce ainda nao tem nenhum habito cadastrado ainda. Adicione um habito para comecar a acompanhar!</NoHabit>}
     </Container>
     <Footer></Footer>
     </PageStyle>
@@ -85,7 +83,6 @@ const PageStyle = styled.div`
 `
 const PlusBtn = styled.div`
     
-
 `
 
 const NoHabit = styled.div`
@@ -95,4 +92,3 @@ const NoHabit = styled.div`
     margin-right: auto;
     margin-top: 28px;
 `
-
