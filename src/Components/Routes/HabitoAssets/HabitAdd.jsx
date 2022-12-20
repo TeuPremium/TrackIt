@@ -15,8 +15,8 @@ export default function(prop){
            <StyledInput placeholder="nome do habito"/>
             <WeekContainer>{week.map((n) => <Weekday day={n}/>)}</WeekContainer>
             <Btns>
-                <CancelBtn>Cancelar</CancelBtn> 
-            <StyledButtonBlue text="salvar" height="35px" width="84px"/>
+                <CancelBtn onClick={() => prop.setAdd(false)}>Cancelar</CancelBtn> 
+            <div onClick={() => prop.setAdd(false)}><StyledButtonBlue text="salvar" height="35px" width="84px"/></div>
             </Btns>
 
         </Card>

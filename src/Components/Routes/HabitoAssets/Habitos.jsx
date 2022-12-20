@@ -7,13 +7,13 @@ import GlobalStyle from "../../../Styles/GlobalStyle"
 import Habit from "./HabitAdd"
 import HabitAdded from "./HabitAdded"
 import AuthContext from "../../Contexts/AuthContext"
-import { useContext } from "react"
+import { useContext, useState } from "react"
 import LoginFailed from "../../CommonAssets/LoginFailed"
 
 
 export default function(prop){
     const {token} = useContext(AuthContext)
-
+    const [add, setAdd] = useState(false)
     if(token){
         return(
     <PageStyle>
@@ -22,9 +22,9 @@ export default function(prop){
     <Container>
         <MyHabits>
             <BlueText text="Meus habitos"/>
-            <PlusBtn><StyledButtonBlue width='40px' text='+' height='35px'/></PlusBtn>
+            <PlusBtn onClick={() => setAdd(true)}><StyledButtonBlue width='40px' text='+' height='35px'/></PlusBtn>
        </MyHabits>
-        <Habit/>
+        {add ? <Habit setAdd={add => setAdd(add)}/> : ''}
         <HabitAdded habit="Placeholder text" />
     <NoHabit>Voce ainda nao tem nenhum habito cadastrado ainda. Adicione um habito para comecar a acompanhar!</NoHabit>
     </Container>
