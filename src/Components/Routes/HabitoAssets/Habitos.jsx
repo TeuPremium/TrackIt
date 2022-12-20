@@ -71,7 +71,7 @@ const Container = styled.div`
     
     position: relative;
     top: 100px;
-    
+    padding-bottom: 100px;
     
 `
 

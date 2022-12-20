@@ -13,7 +13,7 @@ import { useEffect } from "react";
 export default function(prop){
     const {token} = useContext(AuthContext)
     const week = ['D','S','T','Q','Q','S','S']
-    const [habito, setHabito] = useState({name: 'stringtest', days: [1]})
+    let habito = {name: '', days: []}
     
     const {cards, setCards} = useContext(CardsContext)
     useEffect(() => {
@@ -43,7 +43,15 @@ export default function(prop){
     }
 
     function aux(e){
-        console.log(e)
+        habito.name = e.target.value
+        console.log(habito)
+    }
+    const array = []
+    function auxDays(e){
+        if(!array.includes(e)){
+            array.push(e)
+            habito.days=array
+        }
     }
 
 
@@ -51,7 +59,15 @@ export default function(prop){
     <Container >
         <Card>
            <StyledInput onChange={aux} placeholder="nome do habito"/>
-            <WeekContainer>{week.map((n) => <Weekday day={n}/>)}</WeekContainer>
+            <WeekContainer>
+                <Weekday day={'D'} onChange={auxDays(1)}/>
+                <Weekday day={'S'} onChange={auxDays(2)}/>
+                <Weekday day={'T'} onChange={auxDays(3)}/>
+                <Weekday day={'Q'} onChange={auxDays(4)}/>
+                <Weekday day={'Q'} onChange={auxDays(5)}/>
+                <Weekday day={'S'} onChange={auxDays(6)}/>
+                <Weekday day={'S'} onChange={auxDays(7)}/>
+            </WeekContainer>
             <Btns>
                 <CancelBtn onClick={() => prop.setAdd(false)}>Cancelar</CancelBtn> 
             <div onClick={() => {postHabit()}}><StyledButtonBlue text="salvar" height="35px" width="84px"/></div>
