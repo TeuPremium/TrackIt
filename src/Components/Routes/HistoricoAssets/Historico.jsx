@@ -4,12 +4,16 @@ import Header from "../../CommonAssets/Header"
 import Footer from "../../CommonAssets/Footer"
 import BlueText from "../../CommonAssets/BlueText"
 import GlobalStyle from "../../../Styles/GlobalStyle"
+import LoginFailed from "../../CommonAssets/LoginFailed"
+import AuthContext from "../../Contexts/AuthContext"
+import { useContext } from "react"
 
 
 
 
 export default function(prop){
-    
+    const {token} = useContext(AuthContext)
+    if(token){
     return(
     <PageStyle>
         <GlobalStyle color="#e5e5e5"/>
@@ -22,7 +26,10 @@ export default function(prop){
     </Container>
     <Footer></Footer>
     </PageStyle>
-    )
+    )}
+    else{
+        return (<LoginFailed/>)
+    }
 }
 
 const MyHistory = styled.span`

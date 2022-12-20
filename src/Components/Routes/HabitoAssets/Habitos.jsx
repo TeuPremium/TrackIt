@@ -6,10 +6,16 @@ import BlueText from "../../CommonAssets/BlueText"
 import GlobalStyle from "../../../Styles/GlobalStyle"
 import Habit from "./HabitAdd"
 import HabitAdded from "./HabitAdded"
+import AuthContext from "../../Contexts/AuthContext"
+import { useContext } from "react"
+import LoginFailed from "../../CommonAssets/LoginFailed"
+
 
 export default function(prop){
-    
-    return(
+    const {token} = useContext(AuthContext)
+
+    if(token){
+        return(
     <PageStyle>
         <GlobalStyle color="#e5e5e5"/>
     <Header/>
@@ -24,7 +30,12 @@ export default function(prop){
     </Container>
     <Footer></Footer>
     </PageStyle>
-    )
+    )}
+    else{
+        return(
+            <LoginFailed/>
+        )
+    }
 }
 
 const MyHabits = styled.span`
