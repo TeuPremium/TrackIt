@@ -14,20 +14,9 @@ export default function(prop){
     const {token} = useContext(AuthContext)
     const week = ['D','S','T','Q','Q','S','S']
     let habito = {name: '', days: []}
-    
+    const [days, setDays] = useState([])
    
-    
-
-    function postHabit(){
-        const config = {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        }
-        const habitPost = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits", habito, config)
-        habitPost.then( () => {
-            prop.setAdd(false);
-            const {cards, setCards} = useContext(CardsContext)
+    const {cards, setCards} = useContext(CardsContext)
             useEffect(() => {
                 const URL = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits"
                 const config = {
@@ -40,6 +29,17 @@ export default function(prop){
             promise.catch(console.log)
             console.log(cards)
             }, [])
+
+    function postHabit(){
+        const config = {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }
+        const habitPost = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits", habito, config)
+        habitPost.then( () => {
+            prop.setAdd(false);
+            
         })
         habitPost.catch( (err) => console.log(err.response.data))
     }
@@ -61,7 +61,7 @@ export default function(prop){
     <Container >
         <Card>
            <StyledInput onChange={aux} placeholder="nome do habito"/>
-            <WeekContainer>{week.map((n, index) => <Weekday day={n} onClick={auxDays(index)}/>)}</WeekContainer>
+            <WeekContainer>{week.map((n, index) => <Weekday day={n} days={days} setDays={(days)=>{setDays(days); habito.days=days}} id={index}/>)}</WeekContainer>
             <Btns>
                 <CancelBtn onClick={() => prop.setAdd(false)}>Cancelar</CancelBtn> 
             <div onClick={() => {postHabit()}}><StyledButtonBlue text="salvar" height="35px" width="84px"/></div>
