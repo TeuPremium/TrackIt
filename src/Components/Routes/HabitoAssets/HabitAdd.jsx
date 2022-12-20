@@ -7,11 +7,27 @@ import StyledButtonBlue from "../../CommonAssets/StyledButtonBlue"
 import axios from "axios"
 import { useContext } from "react"
 import AuthContext from "../../Contexts/AuthContext"
+import CardsContext from "../../Contexts/AuthContext copy";
+import { useEffect } from "react";
 
 export default function(prop){
     const {token} = useContext(AuthContext)
     const week = ['D','S','T','Q','Q','S','S']
-    const [habito, setHabito] = useState()
+    const [habito, setHabito] = useState({name: 'stringtest', days: [1]})
+    
+    const {cards, setCards} = useContext(CardsContext)
+    useEffect(() => {
+        const URL = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits"
+        const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
+    const promise = axios.get(URL, config)
+    promise.then((res) => {setCards(res.data)})
+    promise.catch(console.log)
+    console.log(cards)
+    }, [])
     
 
     function postHabit(e){
@@ -26,12 +42,16 @@ export default function(prop){
         habitPost.catch( (err) => console.log(err.response.data))
     }
 
+    function aux(e){
+        console.log(e)
+    }
+
 
         return(
     <Container >
         <Card>
-           <StyledInput placeholder="nome do habito"/>
-            <WeekContainer>{week.map((n) => <Weekday day={n} id={n.index}/>)}</WeekContainer>
+           <StyledInput onChange={aux} placeholder="nome do habito"/>
+            <WeekContainer>{week.map((n) => <Weekday day={n}/>)}</WeekContainer>
             <Btns>
                 <CancelBtn onClick={() => prop.setAdd(false)}>Cancelar</CancelBtn> 
             <div onClick={() => {postHabit()}}><StyledButtonBlue text="salvar" height="35px" width="84px"/></div>
