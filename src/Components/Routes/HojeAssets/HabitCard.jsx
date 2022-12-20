@@ -2,10 +2,27 @@ import styled from "styled-components"
 
 import { IoIosCheckbox } from 'react-icons/io'
 import { useState } from "react"
+import axios from "axios"
 
 
 export default function(prop){
-    const [complete, setComplete] = useState(prop.complete)
+    console.log(prop)
+    const [complete, setComplete] = useState(prop.done)
+    
+    function postChange(check){
+        const apiLink = `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${prop.id}/${check}`
+        console.log('bruh')
+        const config = {
+            headers: {
+                Authorization: `Bearer ${prop.token}`
+            }
+        }
+        const promise = axios.post(apiLink,{},config)
+        promise.then(console.log)
+        promise.catch(console.log)
+    }
+    
+
     return(
         <Container >
             <Card>
@@ -13,18 +30,20 @@ export default function(prop){
                     <div><h1> {prop.habit} </h1>
                     <SequenceContainer>
                     <h2>Sequencia atual: {complete ? <ColoredText color="#8fc549">{prop.currentSequence} dias</ColoredText> : <>{prop.currentSequence} dias</>}</h2>
-                    {/* consertar clique recorde*/}
+                    
                     <h2>Seu recorde: {complete ? <ColoredText color="#8fc549">{prop.record} dias</ColoredText> : <>{prop.record} dias</>} </h2>
                     
                     </SequenceContainer>
                     </div>
-                    {complete ? <IoIosCheckbox onClick={() => setComplete(false)} color='#8fc549'/> : <IoIosCheckbox onClick={() => setComplete(true)} color='#ebebeb'/>}
+                    {complete ? <IoIosCheckbox onChange={postChange(`check`)} onClick={() =>{setComplete(false)}} color='#8fc549'/> : <IoIosCheckbox onChange={postChange(`uncheck`)} onClick={() => setComplete(true)} color='#ebebeb'/>}
                 
                 </StyledDiv>
             </Card>
         </Container>
         ) 
 }
+
+
 
 const Container = styled.div`
     margin-bottom: 10px;

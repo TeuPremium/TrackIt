@@ -44,7 +44,7 @@ export default function(prop){
        </MyHabits>
         {add ? <Habit setAdd={(add) => setAdd(add)}/> : ''}
         {cards ? cards.map((n)=><HabitAdded habit={n.name} />) : ''}
-    {<NoHabit>Voce ainda nao tem nenhum habito cadastrado ainda. Adicione um habito para comecar a acompanhar!</NoHabit>}
+    {!cards ? <NoHabit>Voce ainda nao tem nenhum habito cadastrado ainda. Adicione um habito para comecar a acompanhar!</NoHabit> : ''}
     </Container>
     <Footer></Footer>
     </PageStyle>

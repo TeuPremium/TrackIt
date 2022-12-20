@@ -41,7 +41,7 @@ export default function(prop){
             <BlueText text="Segunda, 17/05"/>
        </MyHabits>
         <NoHabit>Nenhum habito concluido ainda</NoHabit>
-        {today.map ((n) => <HabitCard habit={n.name} record={n.highestSequence} currentSequence={n.currentSequence} />)}
+        {today.map ((n) => <HabitCard done={n.done} token={token} habit={n.name} id={n.id} record={n.highestSequence} currentSequence={n.currentSequence} />)}
     </Container>
     <Footer></Footer>
     </PageStyle>
