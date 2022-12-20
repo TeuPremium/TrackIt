@@ -1,15 +1,20 @@
 import styled from "styled-components"
 import Header from "../../CommonAssets/Header"
 import Footer from "../../CommonAssets/Footer"
-import StyledButtonBlue from "../../CommonAssets/StyledButtonBlue"
 import BlueText from "../../CommonAssets/BlueText"
 import GlobalStyle from "../../../Styles/GlobalStyle"
 import HabitCard from "./HabitCard"
+import { useContext } from "react"
+import AuthContext from "../../Contexts/AuthContext"
 
 
 
 export default function(prop){
     
+    const {token} = useContext(AuthContext)
+
+    console.log(token)
+
     return(
     <PageStyle>
         <GlobalStyle color="#e5e5e5"/>
@@ -43,8 +48,6 @@ const Container = styled.div`
     
     
 `
-
-
 
 const PageStyle = styled.div`
     background-color: #e5e5e5;

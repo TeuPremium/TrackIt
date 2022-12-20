@@ -8,21 +8,30 @@ import Habitos from './Components/Routes/HabitoAssets/Habitos';
 import Hoje from './Components/Routes/HojeAssets/Hoje';
 import Historico from './Components/Routes/HistoricoAssets/Historico';
 import Cadastro from './Components/Routes/Cadastro';
+import AuthContext from './Components/Contexts/AuthContext';
+import { useState } from 'react';
 
 function App() {
-  return (
-  <BrowserRouter>
-    <GlobalStyle/>
-    <Routes>
-        
-          <Route path='/' element={<Login/>}/>
-          <Route path='/cadastro' element={<Cadastro/>}/>
-          <Route path='/habitos' element={<Habitos/>}/>
-          <Route path='/hoje' element={<Hoje/>}/>
-          <Route path='/historico' element={<Historico/>}/>
-    </Routes>
-  </BrowserRouter>
+  const [token, setToken] = useState()
+  const loggedUser = []
+
+
   
+
+  return (
+  <AuthContext.Provider value={{token, setToken}}>
+    <BrowserRouter>
+      <GlobalStyle/>
+      <Routes>
+          
+            <Route path='/' element={<Login/>}/>
+            <Route path='/cadastro' element={<Cadastro/>}/>
+            <Route path='/habitos' element={<Habitos/>}/>
+            <Route path='/hoje' element={<Hoje/>}/>
+            <Route path='/historico' element={<Historico/>}/>
+      </Routes>
+    </BrowserRouter>
+  </AuthContext.Provider>
   );
 }
 

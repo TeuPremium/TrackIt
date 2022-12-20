@@ -27,21 +27,21 @@ export default function Cadastro(){
         
             <form onSubmit={handleSubmit(onSubmit)}>
             
-                <div><input placeholder="email" id='email' name="email" type="email" defaultValue="email" {...register("email", {required:true})} /></div>
-                {errors.email && <div><h2>Este campo deve estar preenchido</h2></div>}
+                <div><input placeholder="email" id='email' name="email" type="email" {...register("email", {required:true})} /></div>
+                {errors.email && <span><h3>Este campo deve estar preenchido</h3></span>}
                 
                 <div><input id='name' name="name" placeholder="nome" type="text" {...register("name", { required: true })} /></div>
-                {errors.name && <div>Este campo deve estar preenchido</div>}
+                {errors.name && <span><h3>Este campo deve estar preenchido</h3></span>}
 
                 <div><input id='pwd' name="pwd" placeholder="senha" type="password" {...register("password", { required: true })} /></div>
-                {errors.password && <div>Este campo deve estar preenchido</div>}
+                {errors.password && <span><h3>Este campo deve estar preenchido</h3></span>}
 
                 <div><input id='picture' name="picture" placeholder="foto" type="URL" {...register("image", { required: true })} /></div>
-                {errors.image && <div>Este campo deve estar preenchido</div>}
+                {errors.image && <span><h3>Este campo deve estar preenchido</h3></span>}
             <div> <input style={{background:'#52b6ff', color:'white'}} type="submit" /></div>
             </form>
             <Link style={{color:'#52b6ff'}} to='/'>
-            <LoginHook>Ja tem uma conta? Faca login</LoginHook>
+            <LoginHook>Ja tem uma conta? Faca login!</LoginHook>
             </Link>
         </Container>
     
@@ -70,7 +70,9 @@ const Container = styled.div`
         font-size: 20px;
         ::placeholder{
         color:#dbdbdb;
-        }    
+        }
+      
+    
     }
 `
 const LoginHook = styled.div`

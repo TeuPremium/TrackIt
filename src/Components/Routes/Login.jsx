@@ -3,45 +3,53 @@ import styled from "styled-components";
 import Logo from "../CommonAssets/Logo";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useContext } from "react";
+import AuthContext from "../Contexts/AuthContext";
 
 
 export default function App() {
-  const { register, handleSubmit, watch, formState: { errors } } = useForm();
-  const navigate = useNavigate()
-  function onSubmit(data){ 
-  const submitData = axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login', data)
-    submitData.then((res) =>{
-            navigate('/hoje')
-            })
+const { register, handleSubmit, watch, formState: { errors } } = useForm();
+const navigate = useNavigate()
+const {setToken} = useContext(AuthContext)
 
-    submitData.catch((err) => {
-        alert(err.response.data.message)
-    })
+console.log(setToken)
 
-    console.log(data);
-    }
+function onSubmit(data){ 
+const submitData = axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login', data)
+submitData.then((res) =>{
+        console.log(res)
+        navigate('/hoje')
+        setToken(res.data.token)
+        })
 
-  return (
+submitData.catch((err) => {
+    alert(err.response.data.message)
+})
+
+console.log(data);
+}
+
+return (
+
+    <Container>
+        <Logo/>
     
-        <Container>
-            <Logo/>
+        <form onSubmit={handleSubmit(onSubmit)}>
         
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <div><input placeholder="email" id='email' name="email" type="email" {...register("email", {required:true})} /></div>
+            {errors.email && <div><h3>Insira seu Email</h3></div>}
             
-                <div><input placeholder="email" id='email' name="email" type="email" {...register("email", {required:true})} /></div>
-                {errors.email && <div><h2>Este campo deve estar preenchido</h2></div>}
-                
-                <div><input id='pwd' name="pwd" placeholder="senha" type="password" {...register("password", { required: true })} /></div>
-                {errors.password && <div>Este campo deve estar preenchido</div>}
+            <div><input id='pwd' name="pwd" placeholder="senha" type="password" {...register("password", { required: true })} /></div>
+            {errors.password && <div>Digite sua senha correta!</div>}
 
-            <div> <input value="Entrar" style={{background:'#52b6ff', color:'white'}} type="submit" /></div>
-            </form>
-            <Link style={{color:'#52b6ff'}} to='/cadastro'>
-            <LoginHook>Nao tem uma conta? Cadastre-se!</LoginHook>
-            </Link>
-        </Container>
-    
-  );
+        <div> <input value="Entrar" style={{background:'#52b6ff', color:'white'}} type="submit" /></div>
+        </form>
+        <Link style={{color:'#52b6ff'}} to='/cadastro'>
+        <LoginHook>Nao tem uma conta? Cadastre-se!</LoginHook>
+        </Link>
+    </Container>
+
+    );
 }
 
 const Container = styled.div`

@@ -19,6 +19,12 @@ h2{
     margin-left:5% ;
     color: #666666;
 }
-
+h3{
+    font-weight: 400;
+    font-size:11px;
+    margin-left:5% ;
+    color: #666666;
+    line-height: 0px;
+}
 `
 export default GlobalStyle;
