@@ -15,30 +15,33 @@ export default function(prop){
     const week = ['D','S','T','Q','Q','S','S']
     let habito = {name: '', days: []}
     
-    const {cards, setCards} = useContext(CardsContext)
-    useEffect(() => {
-        const URL = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits"
-        const config = {
-        headers: {
-            Authorization: `Bearer ${token}`
-        }
-    }
-    const promise = axios.get(URL, config)
-    promise.then((res) => {setCards(res.data)})
-    
-    }, [])
+   
     
 
-    function postHabit(e){
+    function postHabit(){
         const config = {
             headers: {
                 Authorization: `Bearer ${token}`
             }
         }
-        console.log(config)
         const habitPost = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits", habito, config)
-        habitPost.then( () => prop.setAdd(false))
-        habitPost.catch( (err) => alert(err.response.data))
+        habitPost.then( () => {
+            prop.setAdd(false);
+            const {cards, setCards} = useContext(CardsContext)
+            useEffect(() => {
+                const URL = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits"
+                const config = {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }
+            const promise = axios.get(URL, config)
+            promise.then((res) => {setCards(res.data)})
+            promise.catch(console.log)
+            console.log(cards)
+            }, [])
+        })
+        habitPost.catch( (err) => console.log(err.response.data))
     }
 
     function aux(e){

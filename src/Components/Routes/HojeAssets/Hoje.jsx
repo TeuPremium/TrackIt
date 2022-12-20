@@ -34,7 +34,7 @@ export default function(prop){
     }
     const promise = axios.get(URL, config)
     promise.then((res) => {setToday(res.data)})
-    promise.catch((err)=> alert(err.response.data))
+    promise.catch((err)=>console.log(err.response.data))
     
     }, [])
     
