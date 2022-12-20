@@ -7,12 +7,20 @@ import GlobalStyle from "../../../Styles/GlobalStyle"
 import LoginFailed from "../../CommonAssets/LoginFailed"
 import AuthContext from "../../Contexts/AuthContext"
 import { useContext } from "react"
+import axios from "axios"
 
 
 
 
 export default function(prop){
     const {token} = useContext(AuthContext)
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
+    const test = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits", config)
+
     if(token){
     return(
     <PageStyle>

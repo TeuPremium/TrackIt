@@ -9,11 +9,29 @@ import HabitAdded from "./HabitAdded"
 import AuthContext from "../../Contexts/AuthContext"
 import { useContext, useState } from "react"
 import LoginFailed from "../../CommonAssets/LoginFailed"
+import { useEffect } from "react"
+import axios from "axios"
 
 
 export default function(prop){
     const {token} = useContext(AuthContext)
     const [add, setAdd] = useState(false)
+    const Cards = []
+    
+    useEffect(() => {
+        const URL = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits"
+        const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
+    console.log(config)
+    const promise = axios.get(URL, config)
+    promise.then((res) => Cards.push(res.data))
+    promise.catch((err) => console.log(err.response.data))
+    }, [])
+
+    
     if(token){
         return(
     <PageStyle>

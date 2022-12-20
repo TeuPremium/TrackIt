@@ -18,8 +18,8 @@ function onSubmit(data){
 const submitData = axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login', data)
 submitData.then((res) =>{
         console.log(res)
-        navigate('/hoje')
         setToken(res.data.token)
+        navigate('/hoje')
         })
 
 submitData.catch((err) => {

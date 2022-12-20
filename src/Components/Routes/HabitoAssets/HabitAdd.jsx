@@ -3,11 +3,27 @@ import styled from "styled-components"
 import Weekday from "./Weekday"
 import StyledInput from "./StyledTextInput"
 import StyledButtonBlue from "../../CommonAssets/StyledButtonBlue"
-
+import axios from "axios"
+import { useContext } from "react"
+import AuthContext from "../../Contexts/AuthContext"
 
 export default function(prop){
-    
+    const {token} = useContext(AuthContext)
     const week = ['D','S','T','Q','Q','S','S']
+    const [habito, setHabito] = useState({name: 'pao', days: [1]})
+
+    function postHabit(e){
+        const config = {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }
+        console.log(config)
+        const habitPost = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits", habito, config)
+        habitPost.then( () => prop.setAdd(false))
+        habitPost.catch( (err) => console.log(err.response.data))
+    }
+
 
         return(
     <Container >
@@ -16,7 +32,7 @@ export default function(prop){
             <WeekContainer>{week.map((n) => <Weekday day={n}/>)}</WeekContainer>
             <Btns>
                 <CancelBtn onClick={() => prop.setAdd(false)}>Cancelar</CancelBtn> 
-            <div onClick={() => prop.setAdd(false)}><StyledButtonBlue text="salvar" height="35px" width="84px"/></div>
+            <div onClick={() => {postHabit()}}><StyledButtonBlue text="salvar" height="35px" width="84px"/></div>
             </Btns>
 
         </Card>

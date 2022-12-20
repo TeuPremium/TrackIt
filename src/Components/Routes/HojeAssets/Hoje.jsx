@@ -7,6 +7,8 @@ import HabitCard from "./HabitCard"
 import { useContext } from "react"
 import AuthContext from "../../Contexts/AuthContext"
 import LoginFailed from "../../CommonAssets/LoginFailed"
+import { useEffect } from "react"
+import axios from "axios"
 
 
 
@@ -14,6 +16,17 @@ export default function(prop){
     
     const {token} = useContext(AuthContext)
 
+    useEffect(() => {
+        const URL = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login"
+        const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
+    const promise = axios.get(URL, config)
+    promise.then(console.log)
+    promise.catch(console.log)
+    }, [])
     
 
     if(token){return(
