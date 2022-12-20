@@ -21,7 +21,11 @@ export default function(prop){
         promise.then(console.log)
         
     }
-    
+    let verde = false
+    if((prop.completeSequence>=prop.record)){
+        verde = true
+    }
+
 
     return(
         <Container >
@@ -29,9 +33,9 @@ export default function(prop){
                <StyledDiv>
                     <div><h1> {prop.habit} </h1>
                     <SequenceContainer>
-                    <h2>Sequencia atual: {complete ? <ColoredText color="#8fc549">{prop.currentSequence} dias</ColoredText> : <>{prop.currentSequence} dias</>}</h2>
+                    <h2>Sequencia atual: {prop.done ? <ColoredText color="#8fc549">{prop.currentSequence} dias</ColoredText> : <>{prop.currentSequence} dias</>}</h2>
                     
-                    <h2>Seu recorde: {(prop.completeSequence>=prop.record) ? <ColoredText color="#8fc549">{prop.record} dias</ColoredText> : <>{prop.record} dias</>} </h2>
+                    <h2>Seu recorde: {verde ? <ColoredText color="#8fc549">{prop.record} dias</ColoredText> : <>{prop.record} dias</>} </h2>
                     
                     </SequenceContainer>
                     </div>

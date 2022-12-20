@@ -33,7 +33,7 @@ export default function(prop){
     }
     else{
         return(
-                <Container color={prop.color} backgroundColor={prop.background}>
+                <Container color={prop.color} backgroundColor={prop.backgroundColor}>
                 {prop.day}
                 </Container>
             ) 

@@ -43,7 +43,7 @@ export default function(prop){
             <PlusBtn onClick={() => setAdd(true)}><StyledButtonBlue width='40px' text='+' height='35px'/></PlusBtn>
        </MyHabits>
         {add ? <Habit setAdd={(add) => setAdd(add)}/> : ''}
-        {cards ? cards.map((n)=><HabitAdded habit={n.name} />) : ''}
+        {cards ? cards.map((n)=><HabitAdded days={n.days} habit={n.name} />) : ''}
     {!cards ? <NoHabit>Voce ainda nao tem nenhum habito cadastrado ainda. Adicione um habito para comecar a acompanhar!</NoHabit> : ''}
     </Container>
     <Footer></Footer>
