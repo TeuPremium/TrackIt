@@ -1,6 +1,7 @@
 import { useState } from "react"
 import styled from "styled-components"
 import Weekday from "./Weekday"
+import { useForm } from "react-hook-form";
 import StyledInput from "./StyledTextInput"
 import StyledButtonBlue from "../../CommonAssets/StyledButtonBlue"
 import axios from "axios"
@@ -10,7 +11,8 @@ import AuthContext from "../../Contexts/AuthContext"
 export default function(prop){
     const {token} = useContext(AuthContext)
     const week = ['D','S','T','Q','Q','S','S']
-    const [habito, setHabito] = useState({name: 'pao', days: [1]})
+    const [habito, setHabito] = useState()
+    
 
     function postHabit(e){
         const config = {
@@ -29,7 +31,7 @@ export default function(prop){
     <Container >
         <Card>
            <StyledInput placeholder="nome do habito"/>
-            <WeekContainer>{week.map((n) => <Weekday day={n}/>)}</WeekContainer>
+            <WeekContainer>{week.map((n) => <Weekday day={n} id={n.index}/>)}</WeekContainer>
             <Btns>
                 <CancelBtn onClick={() => prop.setAdd(false)}>Cancelar</CancelBtn> 
             <div onClick={() => {postHabit()}}><StyledButtonBlue text="salvar" height="35px" width="84px"/></div>

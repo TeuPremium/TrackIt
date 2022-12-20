@@ -5,7 +5,7 @@ import { IoIosTrash } from 'react-icons/io'
 
 export default function(prop){
     const week = ['D','S','T','Q','Q','S','S']
-    console.log(prop.card)
+    
     return(
         <Container >
             <Card>

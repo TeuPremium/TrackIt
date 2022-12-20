@@ -9,23 +9,26 @@ import AuthContext from "../../Contexts/AuthContext"
 import LoginFailed from "../../CommonAssets/LoginFailed"
 import { useEffect } from "react"
 import axios from "axios"
+import { useState } from "react"
 
 
 
 export default function(prop){
     
     const {token} = useContext(AuthContext)
+    const [today, setToday] = useState([])
 
     useEffect(() => {
-        const URL = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login"
+        const URL = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today"
         const config = {
         headers: {
             Authorization: `Bearer ${token}`
         }
     }
     const promise = axios.get(URL, config)
-    promise.then(console.log)
+    promise.then((res) => {setToday(res.data);console.log(res, today)})
     promise.catch(console.log)
+    
     }, [])
     
 
@@ -38,7 +41,7 @@ export default function(prop){
             <BlueText text="Segunda, 17/05"/>
        </MyHabits>
         <NoHabit>Nenhum habito concluido ainda</NoHabit>
-        <HabitCard habit='Terminar os projetos' record={3} currentSequence={3} />
+        {today.map ((n) => <HabitCard habit={n.name} record={n.highestSequence} currentSequence={n.currentSequence} />)}
     </Container>
     <Footer></Footer>
     </PageStyle>
