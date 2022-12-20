@@ -25,8 +25,7 @@ export default function(prop){
     }
     const promise = axios.get(URL, config)
     promise.then((res) => {setCards(res.data)})
-    promise.catch(console.log)
-    console.log(cards)
+    
     }, [])
     
 
@@ -39,7 +38,7 @@ export default function(prop){
         console.log(config)
         const habitPost = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits", habito, config)
         habitPost.then( () => prop.setAdd(false))
-        habitPost.catch( (err) => console.log(err.response.data))
+        habitPost.catch( (err) => alert(err.response.data))
     }
 
     function aux(e){
@@ -59,15 +58,7 @@ export default function(prop){
     <Container >
         <Card>
            <StyledInput onChange={aux} placeholder="nome do habito"/>
-            <WeekContainer>
-                <Weekday day={'D'} onChange={auxDays(1)}/>
-                <Weekday day={'S'} onChange={auxDays(2)}/>
-                <Weekday day={'T'} onChange={auxDays(3)}/>
-                <Weekday day={'Q'} onChange={auxDays(4)}/>
-                <Weekday day={'Q'} onChange={auxDays(5)}/>
-                <Weekday day={'S'} onChange={auxDays(6)}/>
-                <Weekday day={'S'} onChange={auxDays(7)}/>
-            </WeekContainer>
+            <WeekContainer>{week.map((n, index) => <Weekday day={n} onClick={auxDays(index)}/>)}</WeekContainer>
             <Btns>
                 <CancelBtn onClick={() => prop.setAdd(false)}>Cancelar</CancelBtn> 
             <div onClick={() => {postHabit()}}><StyledButtonBlue text="salvar" height="35px" width="84px"/></div>

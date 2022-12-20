@@ -27,8 +27,8 @@ export default function(prop){
     }
     const promise = axios.get(URL, config)
     promise.then((res) => {setCards(res.data)})
-    promise.catch(console.log)
-    console.log(cards)
+    promise.catch((err)=> alert(err.response.data))
+    
     }, [])
     
 

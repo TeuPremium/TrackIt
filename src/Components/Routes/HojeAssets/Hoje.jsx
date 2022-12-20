@@ -17,6 +17,13 @@ export default function(prop){
     
     const {token} = useContext(AuthContext)
     const [today, setToday] = useState([])
+    const dayjs = require("dayjs");
+    let updateLocale = require("dayjs/plugin/updateLocale");
+    dayjs.extend(updateLocale);
+    dayjs.updateLocale("en", {
+        weekdays: ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sabado"],
+    });
+
 
     useEffect(() => {
         const URL = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today"
@@ -27,7 +34,7 @@ export default function(prop){
     }
     const promise = axios.get(URL, config)
     promise.then((res) => {setToday(res.data)})
-    promise.catch(console.log)
+    promise.catch((err)=> alert(err.response.data))
     
     }, [])
     
@@ -38,7 +45,7 @@ export default function(prop){
     <Header/>
     <Container>
         <MyHabits>
-            <BlueText text="Segunda, 17/05"/>
+            <BlueText text={dayjs().format("dddd, DD/MM")}/>
        </MyHabits>
         <NoHabit>Nenhum habito concluido ainda</NoHabit>
         {today.map ((n) => <HabitCard done={n.done} token={token} habit={n.name} id={n.id} record={n.highestSequence} currentSequence={n.currentSequence} />)}
