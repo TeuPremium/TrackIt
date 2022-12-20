@@ -26,7 +26,7 @@ export default function(prop){
         }
     }
     const promise = axios.get(URL, config)
-    promise.then((res) => {setToday(res.data);console.log(res, today)})
+    promise.then((res) => {setToday(res.data)})
     promise.catch(console.log)
     
     }, [])

@@ -24,6 +24,7 @@ const HeaderStyle = styled.div`
     padding-left: 3.5%;
     padding-right: 3.5%;
     box-sizing: border-box;
+    z-index: 1;
     div{
         font-weight:400 ;
         font-size: 39px;
