@@ -10,7 +10,7 @@ export default function(prop){
             <Card>
                <StyledDiv>
                     <div><h1> {prop.habit} </h1></div>
-                    <IoIosTrash value={{color: '#666666'}}/>
+                    <IoIosTrash style={{color:'#666666'}}/>
                 </StyledDiv>
                 <WeekContainer>{week.map((n) => <Weekday disabled={true} day={n}/>)}</WeekContainer>
             </Card>

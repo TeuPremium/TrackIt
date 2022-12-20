@@ -1,6 +1,7 @@
 import styled from "styled-components"
-import { buildStyles, CircularProgressbar } from "react-circular-progressbar"
+import { buildStyles, CircularProgressbar, } from "react-circular-progressbar"
 import { Link } from "react-router-dom"
+import "react-circular-progressbar/dist/styles.css";
 
 export default function(prop){
     let percentage = 25
@@ -14,11 +15,17 @@ export default function(prop){
 
             <Link style={{ textDecoration:'none' , color:'#52b6ff'}} to="/hoje">
             <CircularProgressbar 
+            className="joj"
             background={true}
             backgroundPadding={6}
-            
+            styles={buildStyles({
+                backgroundColor: '#52b6ff',
+                textColor: "#fff",
+                pathColor: "#fff",
+                trailColor: "transparent",
+            })}
             value={percentage} 
-            text={<tspan dy={4.5} dx={-17}>Hoje</tspan>}
+            text='Hoje'
             />
           
           
@@ -45,29 +52,14 @@ const Container = styled.div`
     justify-content: space-between;
     
 
-    .CircularProgressbar-trail{
-        stroke: #52b6ff;
-        width: 79px;
-        height: 79px;
-    }
-    .CircularProgressbar-path{
-        stroke: white;
-        width: 79px;
-    }
-    .CircularProgressbar{
+    .joj{
         width: 91px;
-        height: 91px;
-        position: relative;
-        bottom:30px;    
-    }
-
-    .CircularProgressbar-text{
-        fill: #ffffff;
-       
-    }
-    .CircularProgressbar-background{
-        fill: #52b6ff;
-       
+        position: absolute;
+        top: -31px;
+        left: calc(50% - (91px / 2));
+        cursor: pointer;
+        font-size: 18px;
+        font-weight: 400;
     }
     
 `
