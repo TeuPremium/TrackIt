@@ -1,20 +1,27 @@
 import styled from "styled-components"
 import Weekday from "./Weekday"
 import { IoIosTrash } from 'react-icons/io'
+import { useContext } from "react"
+import CardsContext from "../../Contexts/AuthContext copy"
 
 
 export default function(prop){
     const week = ['D','S','T','Q','Q','S','S']
+    console.log(prop.cards[0])
+    const {cards} = useContext(CardsContext)
+    console.log(prop.habit)
     return(
-        <Container >
+        <>
+        {prop.cards.map((n) => <Container >
             <Card>
                <StyledDiv>
-                    <div><h1> {prop.habit} </h1></div>
+                    <div><h1> {n.name} </h1></div>
                     <IoIosTrash style={{color:'#666666'}}/>
                 </StyledDiv>
-                <WeekContainer>{week.map((n) => <Weekday disabled={true} day={n}/>)}</WeekContainer>
+                <WeekContainer>{week.map((m) => <Weekday disabled={true} day={m}/>)}</WeekContainer>
             </Card>
-        </Container>
+        </Container>)}
+        </>
         ) 
 }
 

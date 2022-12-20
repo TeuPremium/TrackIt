@@ -11,12 +11,15 @@ import { useContext, useState } from "react"
 import LoginFailed from "../../CommonAssets/LoginFailed"
 import { useEffect } from "react"
 import axios from "axios"
+import CardsContext from "../../Contexts/AuthContext copy"
 
 
 export default function(prop){
     const {token} = useContext(AuthContext)
     const [add, setAdd] = useState(false)
     const Cards = []
+    const [cardData, setCardData] = useState()
+    const {cards, setCards} = useContext(CardsContext)
     
     useEffect(() => {
         const URL = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits"
@@ -25,13 +28,12 @@ export default function(prop){
             Authorization: `Bearer ${token}`
         }
     }
-    console.log(config)
     const promise = axios.get(URL, config)
-    promise.then((res) => Cards.push(res.data))
+    promise.then((res) => {Cards.push(res.data); setCards(Cards)})
     promise.catch((err) => console.log(err.response.data))
     }, [])
 
-    
+    console.log(cards)
     if(token){
         return(
     <PageStyle>
@@ -43,8 +45,8 @@ export default function(prop){
             <PlusBtn onClick={() => setAdd(true)}><StyledButtonBlue width='40px' text='+' height='35px'/></PlusBtn>
        </MyHabits>
         {add ? <Habit setAdd={add => setAdd(add)}/> : ''}
-        <HabitAdded habit="Placeholder text" />
-    <NoHabit>Voce ainda nao tem nenhum habito cadastrado ainda. Adicione um habito para comecar a acompanhar!</NoHabit>
+        {cards.map((n) => <HabitAdded name='joj' cards={n} days={n.days} habit={n.name} />)}
+    {!cards ? <NoHabit>Voce ainda nao tem nenhum habito cadastrado ainda. Adicione um habito para comecar a acompanhar!</NoHabit> : ''}
     </Container>
     <Footer></Footer>
     </PageStyle>

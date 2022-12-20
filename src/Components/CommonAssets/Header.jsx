@@ -1,11 +1,16 @@
+import { useContext } from "react"
 import styled from "styled-components"
 
+import UserContext from "../Contexts/UserContext"
+
 export default function(prop){
+    const {user} = useContext(UserContext)
+    const pfp = user.image
     return(
         <HeaderStyle>
             <Container>
             <div>TrackIt</div>
-            <div><img src="https://i.pinimg.com/564x/4d/5f/82/4d5f82ad23026c2a8cd2be39980ad96c.jpg"/></div>
+            <div><img src={pfp}/></div>
             </Container>
         </HeaderStyle>
     )

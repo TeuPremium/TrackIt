@@ -5,12 +5,14 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useContext } from "react";
 import AuthContext from "../Contexts/AuthContext";
+import UserContext from "../Contexts/UserContext";
 
 
 export default function App() {
 const { register, handleSubmit, watch, formState: { errors } } = useForm();
 const navigate = useNavigate()
 const {setToken} = useContext(AuthContext)
+const {setUser} = useContext(UserContext)
 
 console.log(setToken)
 
@@ -18,8 +20,9 @@ function onSubmit(data){
 const submitData = axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login', data)
 submitData.then((res) =>{
         console.log(res)
-        setToken(res.data.token)
         navigate('/hoje')
+        setToken(res.data.token)
+        setUser(res.data)
         })
 
 submitData.catch((err) => {
