@@ -8,7 +8,9 @@ export default function(prop){
     const weekIndex = ['','','','','','','']
     for(let i=0;i<7;i++){
         if(prop.days.includes(i)){
-            weekIndex[i]=i
+            
+            weekIndex[i]=i+1
+          
         }
     }
     console.log(weekIndex)
@@ -19,7 +21,7 @@ export default function(prop){
                     <div><h1> {prop.habit} </h1></div>
                     <IoIosTrash style={{color:'#666666'}}/>
                 </StyledDiv>
-                <WeekContainer>{week.map((n, index) => weekIndex[index] ? <Weekday color={"#d5d5d5"} backgroundColor={"white"} disabled={true} day={n}/> : <Weekday color={"white"} backgroundColor={"#d5d5d5"} disabled={true} day={n}/>)}</WeekContainer>
+                <WeekContainer>{week.map((n, index) => weekIndex[index] ? <Weekday color={"white"} backgroundColor={"#d5d5d5"} disabled={true} day={n}/> : <Weekday color={"#d5d5d5"} backgroundColor={"white"} disabled={true} day={n}/>)}</WeekContainer>
             </Card>
         </Container>
         ) 
